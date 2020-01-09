@@ -15,6 +15,23 @@ Route::get('/', function () {
     return view('top');
 });
 
+Route::get('/search', function () {
+    return view('search');
+});
+
+Route::get('/new', function () {
+    return view('content');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/{contentid}', function () {
+    return view('show');
+});
+
+Route::get('/{contentid}/edit', function () {
+    // TODO: 認証をかける
+    return view('content');
+});

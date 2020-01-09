@@ -1,0 +1,46 @@
+.btn-flat-border {
+    display: inline-block;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #67c5ff;
+    border: solid 2px #67c5ff;
+    border-radius: 3px;
+    transition: .4s;
+
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .btn-flat-border:hover {
+    background: #67c5ff;
+    color: white;
+  }
+
+  .btn-flat-border-edit {
+    display: inline-block;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: #FFA500;
+    border: solid 2px #FFA500;
+    border-radius: 3px;
+    transition: .4s;
+  }
+
+  .btn-flat-border-delete {
+    display: inline-block;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    color: red;
+    border: solid 2px red;
+    border-radius: 3px;
+    transition: .4s;
+  }
+
+  .content-box {
+      display:flex;
+    }
+
+  .content-info:last-child {
+    margin-left: auto;
+  }
