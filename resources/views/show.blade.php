@@ -9,19 +9,19 @@
             <div class="card">
                 <div class="card-body">
                 <!-- TODO: コンテンツ表示 -->
-                    <div style="">
+                    <div>
                         <div>
-                        <h3>がおーーー</h3>
-                            <img style="" src="https://laravel-ec.s3-ap-northeast-1.amazonaws.com/gao.png"></img>
+                        <h3>{{$content -> title}}</h3>
+                            <img style="" src="{{$content -> imagespath}}"></img>
                         </div>
                         <div>
                             <ul style="list-style: none;">
-                                <li>発売日 : 2020年01月07日 0時</li>
-                                <li>ユーザー : NP</li>
-                                <li>値段 : 600</li>
+                                <li>発売日 : {{$content -> release}}(TODO)</li>
+                                <li>ユーザー : NP(TODO)</li>
+                                <li>値段 : {{$content -> price}}</li>
                             </ul>
                         </div>
-                        おおかみさんでごぜーます。
+                        {{$content -> description}}
                         </div>
                 </div>
             </div>

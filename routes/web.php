@@ -1,5 +1,8 @@
 <?php
 
+use App\Content;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +15,8 @@
 */
 
 Route::get('/', function () {
-    return view('top');
+    $contents = Content::all();
+    return view('top', ['contents' => $contents]);
 });
 
 Route::get('/search', function () {
@@ -27,8 +31,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/{contentid}', function () {
-    return view('show');
+Route::get('/{contentid}', function ($contentid) {
+    $content = Content::find($contentid);
+    return view('show', ['content' => $content]);
 });
 
 Route::get('/{contentid}/edit', function () {
