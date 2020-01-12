@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/button.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -25,9 +27,9 @@
             <div class="container">
 
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <!-- {{ config('app.name', 'Laravel-ec') }} -->
                     Laravel-ec
                 </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,9 +38,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                    <form method="get" action="#" class="search_container">
-                    <!-- TODO: 検索機能 -->
-                        <input type="text" size="50" placeholder="　キーワード検索">
+                    <form method="get" action="/search" class="search_container">
+                        <input type="text" size="50" name="keyword" placeholder="キーワード検索">
                         <input type="submit" value="検索">
                     </form>
 

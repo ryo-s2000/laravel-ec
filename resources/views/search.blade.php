@@ -5,10 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <a href="new" class="btn-flat-border">新しく販売を開始する</a>
-
-            <div>
-                販売中の作品
+            <div style="margin:15px;">
+                <form method="get" action="/search" class="search_container">
+                    キーワード
+                    <input type="text" name="keyword" size="50" placeholder="キーワード検索"　value="{{$keyword}}">
+                    <input type="submit" value="検索">
+                </form>
             </div>
 
             <!-- Contents -->
@@ -28,25 +30,12 @@
                                         <li>{{ $content->description }}</li>
                                     </ul>
                                 </div>
-                                <div class="content-info">
-
-                                    <div>
-                                        <a href="/{{$content->id}}/edit" class="btn-flat-border-edit">編集</a>
-                                    </div>
-
-                                    <div>
-                                        <form action="/{{$content->id}}/delete" method="POST">
-										    @csrf
-										    @method('DELETE')
-                                            <button type="submit" class="btn-flat-border-delete">削除</button>
-									    </form>
-                                    </div>
-
-                                </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
+            @else
+                一致する作品がありません。
             @endif
 
         </div>

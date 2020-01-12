@@ -13,12 +13,14 @@ class CreateContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('content', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('userid');
             $table->text('title');
             $table->text('description');
             $table->integer('price');
-            $table->json('imagespath');
+            $table->text('imagespath');
+            $table->dateTime('release');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreateContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content');
+        Schema::dropIfExists('contents');
     }
 }
