@@ -44,7 +44,7 @@ Route::get('/search', function (Request $request) {
 Route::get('/new', function () {
     $datetime = date("Y-m-d", strtotime('+1 day'));
     return view('content', ['datetime' => $datetime]);
-})->name('home');
+})->middleware('auth');
 
 Auth::routes();
 
@@ -57,10 +57,10 @@ Route::get('/{contentid}', function ($contentid) {
 });
 
 Route::get('/{contentid}/edit', function ($contentid) {
-    // TODO: 認証をかける(現在のユーザーと、作成ユーザーが同じがどうか)
+    // WARNING:　現在のユーザーと、作成ユーザーが違くても編集できる
     $content = Content::find($contentid);
     return view('content', ['content' => $content]);
-});
+})->middleware('auth');
 
 Route::post('/newcontent', function(Request $request) {
     $validatedData = $request->validate([
@@ -82,7 +82,7 @@ Route::post('/newcontent', function(Request $request) {
     $content->save();
 
     return redirect('/home');
-});
+})->middleware('auth');
 
 Route::post('/{contentid}/edit', function (Request $request, $contentid) {
     $validatedData = $request->validate([
@@ -91,7 +91,7 @@ Route::post('/{contentid}/edit', function (Request $request, $contentid) {
         'description' => 'required',
         'datetime' => 'required'
     ]);
-    // TODO: 認証をかける(現在のユーザーと、作成ユーザーが同じがどうか)
+    // WARNING:　現在のユーザーと、作成ユーザーが違くても編集できる
 
     $content = Content::find($contentid);
     $form = $request->all();
@@ -101,11 +101,11 @@ Route::post('/{contentid}/edit', function (Request $request, $contentid) {
     $content->fill($form)->save();
 
     return redirect('/home');
-});
+})->middleware('auth');
 
 Route::delete('/{contentid}/delete', function (Content $contentid) {
-    // TODO: 認証をかける(現在のユーザーと、作成ユーザーが同じがどうか)
+    // WARNING:　現在のユーザーと、作成ユーザーが違くても削除できる
     $contentid->delete();
 
     return redirect('/home');
-});
+})->middleware('auth');
