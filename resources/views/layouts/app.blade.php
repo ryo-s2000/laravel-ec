@@ -27,7 +27,6 @@
             <div class="container">
 
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <!-- {{ config('app.name', 'Laravel-ec') }} -->
                     Laravel-ec
                 </a>
 
@@ -40,8 +39,7 @@
                     <ul class="navbar-nav mr-auto">
 
                     <form method="get" action="/search" class="search_container">
-                    <!-- TODO: 検索機能 -->
-                        <input type="text" size="50" placeholder="　キーワード検索">
+                        <input type="text" size="50" name="keyword" placeholder="キーワード検索">
                         <input type="submit" value="検索">
                     </form>
 

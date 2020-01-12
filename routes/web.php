@@ -25,14 +25,26 @@ Route::get('/', function () {
     return view('top', ['contents' => $contents, 'usernames' => $usernames]);
 });
 
-Route::get('/search', function () {
-    return view('search');
+Route::get('/search', function (Request $request) {
+    $validatedData = $request->validate([
+        'keyword' => 'required',
+    ]);
+
+    $keyword = $request->keyword;
+    // NOTE: タイトルで検索しているだけ
+    $contents = Content::where('title', 'LIKE', "%{$keyword}%")->get();
+    $usernames = array();
+    foreach($contents as $content){
+        $usernames[] = User::find($content['userid'])['name'];
+    }
+
+    return view('search', ['contents' => $contents, 'usernames' => $usernames, 'keyword' => $keyword]);
 });
 
 Route::get('/new', function () {
     $datetime = date("Y-m-d", strtotime('+1 day'));
     return view('content', ['datetime' => $datetime]);
-});
+})->name('home');
 
 Auth::routes();
 
@@ -79,6 +91,8 @@ Route::post('/{contentid}/edit', function (Request $request, $contentid) {
         'description' => 'required',
         'datetime' => 'required'
     ]);
+    // TODO: 認証をかける(現在のユーザーと、作成ユーザーが同じがどうか)
+
     $content = Content::find($contentid);
     $form = $request->all();
     $form['release'] = date( 'Y-m-d H:i:s', strtotime( $request->datetime ));

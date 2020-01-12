@@ -6,32 +6,38 @@
         <div class="col-md-8">
 
             <div style="margin:15px;">
-            <form method="get" action="#" class="search_container">
-                <!-- TODO: 検索機能 -->
-                キーワード
-                <input type="text" size="50" placeholder=""　value="入力内容">
-                <input type="submit" value="検索">
-            </form>
+                <form method="get" action="/search" class="search_container">
+                    キーワード
+                    <input type="text" name="keyword" size="50" placeholder="キーワード検索"　value="{{$keyword}}">
+                    <input type="submit" value="検索">
+                </form>
             </div>
 
-            <div class="card">
-                <div class="card-body">
-                <!-- TODO: コンテンツ表示 -->
-                    <div style="display:flex;">
-                        <div>
-                            <img style="height:150px; width:200px;" src="https://laravel-ec.s3-ap-northeast-1.amazonaws.com/gao.png"></img>
+            <!-- Contents -->
+            @if (count($contents) > 0)
+                @foreach ($contents as $key => $content)
+                    <div class="card">
+                        <div class="card-body">
+                            <div style="display:flex;">
+                                <div>
+                                    <img style="height:150px; width:200px;" src="{{ $content->imagespath }}"></img>
+                                </div>
+                                <div>
+                                    <ul style="list-style: none;">
+                                        <li><a href="/{{ $content->id }}">{{ $content->title }}</a></li>
+                                        <li>{{ $usernames[$key] }}</li>
+                                        <li>{{ $content->price }}円</li>
+                                        <li>{{ $content->description }}</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <ul style="list-style: none;">
-                                <li><a href="/2">がおーーー</a></li>
-                                <li>NP</li>
-                                <li>600</li>
-                                <li>おおかみさんでごぜーます。</li>
-                            </ul>
-                        </div>
-                        </div>
-                </div>
-            </div>
+                    </div>
+                @endforeach
+            @else
+                一致する作品がありません。
+            @endif
+
         </div>
     </div>
 </div>
