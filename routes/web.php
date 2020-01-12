@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use App\Content;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,12 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     $contents = Content::all();
-    return view('top', ['contents' => $contents]);
+    // TODO: もう少し効率的なやり方で
+    $usernames = array();
+    foreach($contents as $content){
+        $usernames[] = User::find($content['userid'])['name'];
+    }
+    return view('top', ['contents' => $contents, 'usernames' => $usernames]);
 });
 
 Route::get('/search', function () {
@@ -33,7 +39,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/{contentid}', function ($contentid) {
     $content = Content::find($contentid);
-    return view('show', ['content' => $content]);
+    // TODO: もう少し効率的なやり方で
+    $username = User::find($content['userid'])['name'];
+    return view('show', ['content' => $content, 'username' => $username]);
 });
 
 Route::get('/{contentid}/edit', function () {

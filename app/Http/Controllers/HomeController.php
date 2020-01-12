@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Content;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userid = Auth::id();
+        $contents = Content::where('userid', $userid)->get();
+        // TODO: もう少し効率的なやり方で
+        $usernames = array();
+        foreach($contents as $content){
+            $usernames[] = User::find($content['userid'])['name'];
+        }
+        return view('home', ['contents' => $contents, 'usernames' => $usernames]);
     }
 }

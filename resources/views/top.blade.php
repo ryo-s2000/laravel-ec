@@ -7,7 +7,7 @@
 
                 <!-- Contents -->
                 @if (count($contents) > 0)
-                    @foreach ($contents as $content)
+                    @foreach ($contents as $key => $content)
                         <div class="card">
                             <div class="card-body">
                                 <div style="display:flex;">
@@ -17,8 +17,8 @@
                                     <div>
                                         <ul style="list-style: none;">
                                             <li><a href="/{{ $content->id }}">{{ $content->title }}</a></li>
-                                            <li>森P(TODO:リレーションを貼る)</li>
-                                            <li>{{ $content->price }}</li>
+                                            <li>{{ $usernames[$key] }}</li>
+                                            <li>{{ $content->price }}円</li>
                                             <li>{{ $content->description }}</li>
                                         </ul>
                                     </div>
