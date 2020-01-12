@@ -28,7 +28,6 @@ class HomeController extends Controller
     {
         $userid = Auth::id();
         $contents = Content::where('userid', $userid)->get();
-        // TODO: もう少し効率的なやり方で
         $usernames = array();
         foreach($contents as $content){
             $usernames[] = User::find($content['userid'])['name'];

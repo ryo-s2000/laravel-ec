@@ -35,12 +35,14 @@
     border: solid 2px red;
     border-radius: 3px;
     transition: .4s;
+    margin-left: 10px;
   }
 
   .content-box {
       display:flex;
     }
 
-  .content-info:last-child {
+  .content-info {
+    display: flex;
     margin-left: auto;
   }

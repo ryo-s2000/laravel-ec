@@ -15,8 +15,7 @@
                         </div>
                         <div>
                             <ul style="list-style: none;">
-                                <!-- releaseに正しいデータを詰める(TODO) -->
-                                <li>発売日 : {{$content->created_at->format('Y年m月d日 H時')}}</li>
+                                <li>発売日 : {{$content->release->format('Y年m月d日 H時')}}</li>
                                 <li>ユーザー : {{ $username }}</li>
                                 <li>値段 : {{$content -> price}}円</li>
                             </ul>

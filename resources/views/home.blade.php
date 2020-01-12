@@ -5,8 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
-
-            <!-- TODO: 販売開始ページ作成 -->
             <a href="new" class="btn-flat-border">新しく販売を開始する</a>
 
             <div>
@@ -31,8 +29,19 @@
                                     </ul>
                                 </div>
                                 <div class="content-info">
-                                    <a href="/1/edit" class="btn-flat-border-edit">編集</a>
-                                    <a href="#" class="btn-flat-border-delete">削除</a>
+
+                                    <div>
+                                        <a href="/{{$content->id}}/edit" class="btn-flat-border-edit">編集</a>
+                                    </div>
+
+                                    <div>
+                                        <form action="/{{$content->id}}/delete" method="POST">
+										    @csrf
+										    @method('DELETE')
+                                            <button type="submit" class="btn-flat-border-delete">削除</button>
+									    </form>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
