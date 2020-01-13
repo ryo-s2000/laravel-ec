@@ -23,13 +23,13 @@
             <div class="card">
                 <div class="card-body">
                     @if ($content ?? '')
-                        <form method="post" action="/{{$content->id}}/edit" class="search_container">
+                        <form method="post" action="/{{$content->id}}/edit" class="search_container" enctype="multipart/form-data">
                             @csrf
 
                             <div>
-                                画像を選択
-                                <!-- TODO 画像選択処理 -->
-                                <button>ファイルを開く</button>
+                                画像を変更
+                                (表示中の画像)<img style="height:150px; width:200px;" src="{{ $content->imagespath }}"><br>
+                                <input type="file" name="file">
                             </div>
 
                             <div>
@@ -58,13 +58,12 @@
 
                         </form>
                     @else
-                        <form method="post" action="/newcontent" class="search_container">
+                        <form method="post" action="/newcontent" class="search_container" enctype="multipart/form-data">
                             @csrf
 
                             <div>
                                 画像を選択
-                                <!-- TODO 画像選択処理 -->
-                                <button>ファイルを開く</button>
+                                <input type="file" name="file">
                             </div>
 
                             <div>

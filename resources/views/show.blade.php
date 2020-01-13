@@ -11,7 +11,7 @@
                     <div>
                         <div>
                         <h3>{{$content -> title}}</h3>
-                            <img style="" src="{{$content -> imagespath}}"></img>
+                            <img style="" src="{{$content -> imagespath}}">
                         </div>
                         <div>
                             <ul style="list-style: none;">

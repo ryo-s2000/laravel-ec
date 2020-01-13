@@ -12,7 +12,7 @@
                             <div class="card-body">
                                 <div style="display:flex;">
                                     <div>
-                                        <img style="height:150px; width:200px;" src="{{ $content->imagespath }}"></img>
+                                        <img style="height:150px; width:200px;" src="{{ $content->imagespath }}">
                                     </div>
                                     <div>
                                         <ul style="list-style: none;">
