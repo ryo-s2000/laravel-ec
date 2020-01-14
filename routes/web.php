@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', 'ContentsController@top')->middleware('auth');
+Route::get('/', 'ContentsController@top');
 
-Route::get('/search', 'ContentsController@search')->middleware('auth');
+Route::get('/search', 'ContentsController@search');
 
 Route::get('/new', 'ContentsController@new')->middleware('auth');
 
@@ -26,7 +26,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/{contentid}', 'ContentsController@show')->middleware('auth');
+Route::get('/{contentid}', 'ContentsController@show');
 
 Route::post('/newcontent', 'ContentsController@upload')->middleware('auth');
 
