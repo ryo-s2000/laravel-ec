@@ -10,6 +10,13 @@
                     キーワード
                     <input type="text" name="keyword" size="50" placeholder="キーワード検索"　value="{{$keyword}}">
                     <input type="submit" value="検索">
+
+                    <select name="sort">
+                        <option value="new" {{$selectnew}}>新しい順</option>
+                        <option value="old" {{$selectold}}>古い順</option>
+                        <option value="cheap" {{$selectcheap}}>安い順</option>
+                        <option value="expensive" {{$selectexpensive}}>高い順</option>
+                    </select>
                 </form>
             </div>
 

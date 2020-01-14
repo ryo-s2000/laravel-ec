@@ -30,14 +30,37 @@ class ContentsController extends Controller
         ]);
 
         $keyword = $request->keyword;
-        // NOTE: タイトルで検索しているだけ
-        $contents = Content::where('title', 'LIKE', "%{$keyword}%")->get();
+        // NOTE: タイトル、説明文で検索
+        $contents = Content::where('title', 'LIKE', "%{$keyword}%")->orWhere('description', 'LIKE', "%{$keyword}%")->get();
+        $selectnew = "";
+        $selectold = "";
+        $selectcheap = "";
+        $selectexpensive = "";
+        $sort = $request->sort;
+        switch ($sort){
+            case "new":
+                $contents = $contents->sortByDesc('release');
+                $selectnew = "selected";
+            break;
+            case "old":
+                $contents = $contents->sortBy('release');
+                $selectold = "selected";
+            break;
+            case "cheap":
+                $contents = $contents->sortBy('price');
+                $selectcheap = "selected";
+            break;
+            case "expensive":
+                $contents = $contents->sortByDesc('price');
+                $selectexpensive = "selected";
+            break;
+        }
         $usernames = array();
         foreach($contents as $content){
             $usernames[] = User::find($content['userid'])['name'];
         }
 
-        return view('search', ['contents' => $contents, 'usernames' => $usernames, 'keyword' => $keyword]);
+        return view('search', ['contents' => $contents, 'usernames' => $usernames, 'keyword' => $keyword, "selectnew" => $selectnew, "selectold" => $selectold, "selectcheap" => $selectcheap, "selectexpensive" => $selectexpensive]);
     }
 
     public function show($contentid){

@@ -11,7 +11,11 @@
                     <div>
                         <div>
                         <h3>{{$content -> title}}</h3>
-                            <img style="" src="{{$content -> imagespath}}">
+                        <a style="width:25%;" class="btn-flat-border" href="https://twitter.com/intent/tweet?url=http://13.231.161.57/{{$content->id}}&text={{$content->title}}/{{ $username }}&hashtags=laravel-ec" target="blank_">
+                            Twiiterでシェアする
+                        </a>
+
+                        <img style="" src="{{$content -> imagespath}}">
                         </div>
                         <div>
                             <ul style="list-style: none;">

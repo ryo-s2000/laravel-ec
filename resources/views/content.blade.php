@@ -49,7 +49,7 @@
 
                             <div>
                                 説明
-                                <textarea name="description">{{$content->description}}</textarea>
+                                <textarea name="description" rows="4" cols="40">{{$content->description}}</textarea>
                             </div>
 
                             <div>
@@ -83,7 +83,7 @@
 
                             <div>
                                 説明
-                                <textarea name="description"></textarea>
+                                <textarea name="description" rows="4" cols="40"></textarea>
                             </div>
 
                             <div>
