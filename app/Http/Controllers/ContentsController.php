@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Storage;
 use App\User;
 use App\Content;
+use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,11 +66,16 @@ class ContentsController extends Controller
 
     public function show($contentid){
         $content = Content::find($contentid);
+        $comments = Comment::where('contentid', $contentid)->get();
+        $commentusernames = array();
+        foreach($comments as $comment){
+            $commentusernames[] = User::find($comment['userid'])['name'];
+        }
         $username = User::find($content['userid'])['name'];
-        return view('show', ['content' => $content, 'username' => $username]);
+        return view('show', ['content' => $content, 'username' => $username, 'comments' => $comments, 'commentusernames' => $commentusernames]);
     }
 
-    public function upload(Request $request){
+    public function newcontent(Request $request){
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'price' => 'required|max:255',
@@ -91,6 +97,22 @@ class ContentsController extends Controller
         $content->save();
 
         return redirect('/home');
+    }
+
+    public function newcomment($contentid, Request $request){
+        $validatedData = $request->validate([
+            'comment' => 'required',
+        ]);
+
+        $comment = new Comment;
+        $comment->content = $request->comment;
+        $comment->title = $request->commenttitle;
+        $comment->contentid = $contentid;
+        $userid = Auth::id();
+        $comment->userid = $userid;
+        $comment->save();
+
+        return redirect($contentid);
     }
 
     public function delete(Content $contentid){

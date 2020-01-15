@@ -28,7 +28,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/{contentid}', 'ContentsController@show');
 
-Route::post('/newcontent', 'ContentsController@upload')->middleware('auth');
+Route::post('/newcontent', 'ContentsController@newcontent')->middleware('auth');
+
+Route::post('/{contentid}/newcomment', 'ContentsController@newcomment')->middleware('auth');
 
 Route::get('/{contentid}/edit', 'ContentsController@editview')->middleware('auth');
 
